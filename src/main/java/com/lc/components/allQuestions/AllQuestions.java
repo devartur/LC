@@ -1,8 +1,10 @@
 package com.lc.components.allQuestions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import com.lc.components.question.Question;
 
@@ -13,14 +15,17 @@ public class AllQuestions {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+	@NotNull
  	private String firstLevel;
+	@NotNull
     private String secondLevel;
+	@NotNull
     private String thirdLevel;
-    private String fourthLevel;
-    private String fifthLevel;
-    private String sixthLevel;
+    private String fourthLevel; // optional
+    private String fifthLevel; // not use in frontend	
+    private String sixthLevel;// not use in frontend
     @OneToMany(mappedBy = "allQuestions")
-    private List<Question> questions;
+    private List<Question> questions = new ArrayList<>();  // show numbers of question( where?)
     
 	public Long getId() {
 		return id;
