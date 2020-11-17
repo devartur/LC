@@ -11,12 +11,19 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
 	
 	
 	@Query("select q from Question q where ALL_QUESTIONS_ID in (select id from AllQuestions where firstLevel = :firstLevelValue)")
-	List<Question> findSelectedQuestions(@Param("firstLevelValue") String firstLevelValue);
-}
+	List<Question> findSelectedQuestionsForFirstLevel(@Param("firstLevelValue") String firstLevelValue);
 
-//select ID from ALL_QUESTIONS where FIRST_LEVEL = :firstLevelValue
-/*
- * @Query("select a from Asset a where lower(a.name) like lower(concat('%', :search, '%')) "
- * + "or lower(a.serialNumber) like lower(concat('%', :search, '%'))")
- * List<Asset> findAllByNameOrSerialNumber(@Param("search") String search);
- */
+	@Query("select q from Question q where ALL_QUESTIONS_ID in (select id from AllQuestions where firstLevel = :firstLevelValue and secondLevel = :secondLevelValue)")
+	List<Question> findSelectedQuestionsForSecondLevel(@Param("firstLevelValue") String firstLevelValue, @Param("secondLevelValue") String secondLevelValue);
+	
+	@Query("select q from Question q where ALL_QUESTIONS_ID in (select id from AllQuestions where firstLevel = :firstLevelValue and secondLevel = :secondLevelValue and thirdLevel = :thirdLevelValue )")
+	List<Question> findSelectedQuestionsForThirdLevel(@Param("firstLevelValue") String firstLevelValue, @Param("secondLevelValue") String secondLevelValue,@Param("thirdLevelValue") String thirdLevelValue);
+	
+	@Query("select q from Question q where ALL_QUESTIONS_ID in (select id from AllQuestions where firstLevel = :firstLevelValue and secondLevel = :secondLevelValue and thirdLevel = :thirdLevelValue and fourthLevel = :fourthLevelValue  )")
+	List<Question> findSelectedQuestionsFourthLevel(@Param("firstLevelValue") String firstLevelValue, @Param("secondLevelValue") String secondLevelValue, @Param("thirdLevelValue") String thirdLevelValue, @Param("fourthLevelValue") String fourthLevelValue);
+	
+
+
+
+
+}

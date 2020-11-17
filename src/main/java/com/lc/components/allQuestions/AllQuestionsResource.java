@@ -1,5 +1,6 @@
 package com.lc.components.allQuestions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -24,6 +25,9 @@ public class AllQuestionsResource {
     
     @GetMapping("")
     List<AllQuestionsDto> findAll() {
+    	List<AllQuestionsDto> lista = new ArrayList<AllQuestionsDto>();
+    	lista = allQuestionsService.findAll();
+    	
         return allQuestionsService.findAll();
     }
 

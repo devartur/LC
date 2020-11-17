@@ -36,10 +36,7 @@ public class QuestionResource {
     List<QuestionDto> findQuestionsByIdAndLevel(@RequestParam("firstLevelValue") Long id,
             @RequestParam("level") String level) {
     	 
-		    if(level.equals("firstLevel")) {
-		    	System.out.println(questionService.findQuestionsByIdAndLevel(firstLevelValue));
-		    	return questionService.findQuestionsByIdAndLevel(firstLevelValue);
-		    	}
-	        return null;
+		  
+		    	return questionService.findQuestionsByIdAndLevel(id, level);
     }
 }
