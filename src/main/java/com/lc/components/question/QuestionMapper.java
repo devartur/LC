@@ -14,7 +14,6 @@ public class QuestionMapper {
 		dto.setCreationTime(question.getCreationTime());
 		dto.setCreationBy(question.getCreationBy());
 		dto.setShowInAllQuestion(question.isShowInAllQuestion());
-		dto.setShowInMyQuestion(question.isShowInMyQuestion());
 		return dto;
 	}
 	
@@ -31,7 +30,6 @@ public class QuestionMapper {
 		entity.setCreationTime(question.getCreationTime());
 		entity.setCreationBy(question.getCreationBy());
 		entity.setShowInAllQuestion(question.isShowInAllQuestion());
-		entity.setShowInMyQuestion(question.isShowInMyQuestion());
 		return entity;
 	}
 

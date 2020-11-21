@@ -1,11 +1,13 @@
 package com.lc.components.question;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
 
 import com.lc.components.allQuestions.AllQuestions;
+import com.lc.application.domain.User;
 
 @Entity
 public class Question {
@@ -19,7 +21,6 @@ public class Question {
 	private String intermediateAnswer;
 	private String advancedAnswer;
 	private boolean isShowInAllQuestion; 
-	private boolean isShowInMyQuestion;
 	
 	private Date creationTime;
 	private String creationBy;
@@ -27,6 +28,11 @@ public class Question {
 	@ManyToOne
 	@JoinColumn(name = "allQuestions_id")
 	private AllQuestions allQuestions;
+	
+	@ManyToMany(cascade = { CascadeType.MERGE })
+	@JoinTable(name = "questions_users", joinColumns = { @JoinColumn(name = "questions_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "users_id") })
+	private List<User> appaItemsUsers = new ArrayList<User>();
 
 	public Long getId() {
 		return id;
@@ -100,14 +106,6 @@ public class Question {
 		this.isShowInAllQuestion = isShowInAllQuestion;
 	}
 
-	public boolean isShowInMyQuestion() {
-		return isShowInMyQuestion;
-	}
-
-	public void setShowInMyQuestion(boolean isShowInMyQuestion) {
-		this.isShowInMyQuestion = isShowInMyQuestion;
-	}
-	
 
 	@Override
 	public int hashCode() {
