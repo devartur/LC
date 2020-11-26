@@ -16,9 +16,13 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column( columnDefinition = "NVARCHAR(MAX)")
 	private String question;
+	@Column( columnDefinition = "NVARCHAR(MAX)")
 	private String basicAnswer;
+	@Column( columnDefinition = "NVARCHAR(MAX)")
 	private String intermediateAnswer;
+	@Column( columnDefinition = "NVARCHAR(MAX)")
 	private String advancedAnswer;
 	private boolean isShowInAllQuestion; 
 	

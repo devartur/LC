@@ -19,14 +19,14 @@ import com.lc.lcAdmin.service.UserService;
 import com.lc.lcAdmin.validator.PasswordCreateValid;
 @RestController
 @Validated
-@RequestMapping("/api/user/registration")
-@CrossOrigin//(origins = "http://localhost:4200")
+@RequestMapping("/api/user")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 	
 	@Autowired
 	UserService userService;
 	
-	@PostMapping("")
+	@PostMapping("/register")
 	public ResponseEntity<Void> saveUser(
 			@Valid @RequestBody @PasswordCreateValid UserRequestDTO newUserRequestDTO,BindingResult bindingResult) throws Exception{
 		
