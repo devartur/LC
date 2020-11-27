@@ -2,8 +2,6 @@ package com.lc.components.feedback;
 
 import java.util.List;
 
-import javax.validation.ValidationException;
-
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +32,7 @@ public class FeedbackResource {
             BindingResult bindingResult){
 		    
 		    if (bindingResult.hasErrors()) {
-	            throw new ValidationException();
+		    	//rzuć wyjątek
 	        }
 		    
 	        return feedbackService.save(feedbackDto);
