@@ -1,6 +1,9 @@
 package com.lc.components.feedback;
 
 public class FeedbackMapper {
+	
+	private FeedbackMapper() {
+	}
 
 	static FeedbackDto toDto(Feedback feedback) {
 		FeedbackDto dto = new FeedbackDto();

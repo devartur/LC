@@ -2,6 +2,8 @@ package com.lc.components.question;
 
 public class QuestionMapper {
 	
+	private QuestionMapper() {}
+	
 	static QuestionDto toDto(Question question) {
 		QuestionDto dto = new QuestionDto();
 		

@@ -1,6 +1,8 @@
 package com.lc.components.allQuestions;
 
 public class AllQuestionsMapper {
+	
+	private AllQuestionsMapper() {}
 
 	static AllQuestionsDto toDto(AllQuestions allQuestions) {
 		AllQuestionsDto dto = new AllQuestionsDto();

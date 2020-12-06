@@ -40,10 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure( HttpSecurity http ) throws Exception {
-        http.csrf().ignoringAntMatchers("/h2-console/**").and().cors()
+        http.csrf().ignoringAntMatchers("/h2-console/**","/logout**").and().cors()
         	   .and().headers().frameOptions().disable()  //wyłączony dla bazy h2 produkcjnie włączyć 
         	   .and()
-        			.authorizeRequests().antMatchers( "/oauth2/**", "/login**","/h2-console/**").permitAll()
+        			.authorizeRequests().antMatchers( "/oauth2/**", "/login**").permitAll()
                .and()
                 .authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
@@ -64,7 +64,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private void logout(HttpServletRequest request, HttpServletResponse response,
                 Authentication authentication) {
         // You can process token here
-        System.out.println("Auth token is - " + request.getHeader( "Authorization" ));
+    	
+String authToken = request.getHeader("Authorization");
+		
+		if(authToken != null) {
+			String token = authToken.split(" ")[1];// poprawić na lepsze rozwiązanie
+			tokenStore.removeToken(token);
+		}
     }
 
     void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,

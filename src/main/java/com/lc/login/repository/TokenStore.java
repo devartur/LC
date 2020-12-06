@@ -23,5 +23,9 @@ public class TokenStore {
 		return cache.getOrDefault(token, null);
 		
 	}
+	
+	public void removeToken(String token) {
+		cache.remove(token);
+	}
 
 }

@@ -13,4 +13,9 @@ insert into feedback(id, subject, email, feedback) values
   (7, 'Java', 'Biblioteki', 'Hibernate', null, null, null),	
   (8, 'Java', 'Wzorce projetkowe', 'Fabryka', null, null, null),
   (9, 'SQL', 'Zapytania', 'Select', null, null, null),
-  (10, 'Angular', 'Podstawy', 'Componenty', null, null, null) 
+  (10, 'Angular', 'Podstawy', 'Componenty', null, null, null); 
+  
+  
+  
+   INSERT INTO QUESTION  (ID, QUESTION, BASIC_ANSWER, INTERMEDIATE_ANSWER, ADVANCED_ANSWER, IS_SHOW_IN_ALL_QUESTION, ALL_QUESTIONS_ID, CREATION_BY, CREATION_TIME ) VALUES 
+(1, ' Co to int? ', ' Liczbowy typ prosty ', ' Zawiera liczby z przedziału ', ' Niezainicjalizowany przez nas automatycznie przyjmuje wartość 0 przez co nie może być null ', TRUE, 1,  ' Artur ',  CURRENT_TIMESTAMP) ;
