@@ -1,5 +1,7 @@
 package com.lc.components.feedback;
 
+import com.lc.application.domain.Feedback;
+
 public class FeedbackMapper {
 	
 	private FeedbackMapper() {

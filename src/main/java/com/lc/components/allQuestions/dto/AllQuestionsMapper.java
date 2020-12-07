@@ -1,10 +1,12 @@
-package com.lc.components.allQuestions;
+package com.lc.components.allQuestions.dto;
+
+import com.lc.application.domain.AllQuestions;
 
 public class AllQuestionsMapper {
 	
 	private AllQuestionsMapper() {}
 
-	static AllQuestionsDto toDto(AllQuestions allQuestions) {
+	public static AllQuestionsDto toDto(AllQuestions allQuestions) {
 		AllQuestionsDto dto = new AllQuestionsDto();
 		dto.setId(allQuestions.getId());
 		dto.setFirstLevel(allQuestions.getFirstLevel());
@@ -19,7 +21,7 @@ public class AllQuestionsMapper {
 		return dto;
 	}
 
-	static AllQuestions toEntity(AllQuestionsDto allQuestions) {
+	public static AllQuestions toEntity(AllQuestionsDto allQuestions) {
 		AllQuestions entity = new AllQuestions();
 		entity.setId(allQuestions.getId());
 		entity.setFirstLevel(allQuestions.getFirstLevel());

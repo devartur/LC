@@ -1,4 +1,4 @@
-package com.lc.components.question;
+package com.lc.application.domain;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-import com.lc.components.allQuestions.AllQuestions;
 import com.lc.application.domain.User;
 
 @Entity

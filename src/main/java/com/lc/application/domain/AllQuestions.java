@@ -1,4 +1,4 @@
-package com.lc.components.allQuestions;
+package com.lc.application.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.lc.components.question.Question;
 import com.sun.istack.NotNull;
 
 @Entity

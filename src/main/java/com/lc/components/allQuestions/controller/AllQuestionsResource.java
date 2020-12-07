@@ -1,4 +1,4 @@
-package com.lc.components.allQuestions;
+package com.lc.components.allQuestions.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lc.components.feedback.FeedbackDto;
+import com.lc.components.allQuestions.dto.AllQuestionsDto;
+import com.lc.components.allQuestions.service.AllQuestionsService;
 
 @RestController
 @RequestMapping("/api/all-questions-menu")

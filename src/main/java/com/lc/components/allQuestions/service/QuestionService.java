@@ -1,4 +1,4 @@
-package com.lc.components.question;
+package com.lc.components.allQuestions.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.lc.components.allQuestions.AllQuestions;
-import com.lc.components.allQuestions.AllQuestionsRepository;
+import com.lc.application.domain.AllQuestions;
+import com.lc.components.allQuestions.dto.QuestionDto;
+import com.lc.components.allQuestions.dto.QuestionMapper;
+import com.lc.components.allQuestions.repository.AllQuestionsRepository;
+import com.lc.components.allQuestions.repository.QuestionRepository;
 
 @Service
 public class QuestionService {
@@ -21,7 +24,7 @@ public class QuestionService {
 		 this.allQuestionsRepository = allQuestionsRepository;
 	 }
 	
-	 List<QuestionDto> findAll() {
+	 public List<QuestionDto> findAll() {
 	        return questionRepository.findAll()
 	                .stream()
 	                .map(QuestionMapper::toDto)

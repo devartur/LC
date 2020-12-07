@@ -1,4 +1,4 @@
-package com.lc.components.question;
+package com.lc.components.allQuestions.dto;
 
 import java.sql.Date;
 

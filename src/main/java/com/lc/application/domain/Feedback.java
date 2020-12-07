@@ -1,4 +1,4 @@
-package com.lc.components.feedback;
+package com.lc.application.domain;
 
 import javax.persistence.*;
 

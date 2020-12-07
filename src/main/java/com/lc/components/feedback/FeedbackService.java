@@ -1,9 +1,11 @@
 package com.lc.components.feedback;
 
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.lc.application.domain.Feedback;
 
 @Service
 class FeedbackService {

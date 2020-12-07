@@ -1,4 +1,4 @@
-package com.lc.components.question;
+package com.lc.components.allQuestions.controller;
 
 import java.util.List;
 
@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.lc.components.allQuestions.dto.QuestionDto;
+import com.lc.components.allQuestions.service.QuestionService;
 
 @RestController
 @RequestMapping("/api/")

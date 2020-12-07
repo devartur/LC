@@ -14,16 +14,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.lc.components.question.Question;
-
 
 @Entity
 @Table(name = "users")
 public class User extends AbstractEntity<Long> {
 	
-	private String userName;
+	private String userId;
 	private String email;
-	private String password;
 	private boolean active;
 	private String token;
 	private Date tokenTime;
@@ -47,12 +44,12 @@ public class User extends AbstractEntity<Long> {
 		this.roles = roles;
 	}
 
-	public String getUserName() {
-		return userName;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public Set<Question> getUserQuestions() {
@@ -69,14 +66,6 @@ public class User extends AbstractEntity<Long> {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public boolean isActive() {
@@ -105,7 +94,7 @@ public class User extends AbstractEntity<Long> {
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userName + ", email=" + email + ", active=" + active +  "userQuestions=" + userQuestions + "]";
+		return "User [userName=" + userId + ", email=" + email + ", active=" + active +  "userQuestions=" + userQuestions + "]";
 	}
 
 }

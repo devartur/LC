@@ -1,10 +1,12 @@
-package com.lc.components.question;
+package com.lc.components.allQuestions.dto;
+
+import com.lc.application.domain.Question;
 
 public class QuestionMapper {
 	
 	private QuestionMapper() {}
 	
-	static QuestionDto toDto(Question question) {
+	public static QuestionDto toDto(Question question) {
 		QuestionDto dto = new QuestionDto();
 		
 		
@@ -21,7 +23,7 @@ public class QuestionMapper {
 	
 	
 	
-	static Question toEntity(QuestionDto question) {
+	public static Question toEntity(QuestionDto question) {
 		Question entity = new Question();
 		
 		entity.setId(question.getId());

@@ -1,10 +1,4 @@
-package com.lc.components.allQuestions;
-
-import java.util.List;
-
-import javax.persistence.OneToMany;
-
-import com.lc.components.question.Question;
+package com.lc.components.allQuestions.dto;
 
 public class AllQuestionsDto {
 
