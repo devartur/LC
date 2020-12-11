@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User extends AbstractEntity<Long> {
 	
-	private String userId;
+	private String openId;
 	private String email;
 	private boolean active;
 	private String token;
@@ -42,14 +42,6 @@ public class User extends AbstractEntity<Long> {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 
 	public Set<Question> getUserQuestions() {
@@ -94,7 +86,15 @@ public class User extends AbstractEntity<Long> {
 
 	@Override
 	public String toString() {
-		return "User [userName=" + userId + ", email=" + email + ", active=" + active +  "userQuestions=" + userQuestions + "]";
+		return "User [userName=" + getOpenId() + ", email=" + email + ", active=" + active + "]";
+	}
+
+	public String getOpenId() {
+		return openId;
+	}
+
+	public void setOpenId(String openId) {
+		this.openId = openId;
 	}
 
 }

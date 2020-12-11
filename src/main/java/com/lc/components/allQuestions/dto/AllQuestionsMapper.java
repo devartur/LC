@@ -15,9 +15,6 @@ public class AllQuestionsMapper {
 		dto.setFourthLevel(allQuestions.getFourthLevel());
 		dto.setFifthLevel(allQuestions.getFifthLevel());
 		
-		
-		
-		
 		return dto;
 	}
 

@@ -1,8 +1,15 @@
 package com.lc.components.allQuestions.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +33,7 @@ public class AllQuestionsResource {
     
     @GetMapping("")
     List<AllQuestionsDto> findAll() {
-    	List<AllQuestionsDto> lista = new ArrayList<AllQuestionsDto>();
-    	lista = allQuestionsService.findAll();
-    	
+    	 
         return allQuestionsService.findAll();
     }
 

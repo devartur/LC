@@ -15,7 +15,7 @@ import com.lc.application.domain.User;
 @Repository("LcLoginUserRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	public User findByEmail(String email);
+	public User findByOpenId(String openId);
 
 	public User findByToken(String token);
 
