@@ -73,10 +73,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	
 String authToken = request.getHeader("Authorization");
 		
-		/*
-		 * if(authToken != null) { String token = authToken.split(" ")[1];// poprawić na
-		 * lepsze rozwiązanie tokenStore.removeToken(token); }
-		 */
+		if(authToken != null) {
+			String token = authToken.split(" ")[1];// poprawić na lepsze rozwiązanie
+			tokenStore.removeToken(token);
+		}
     }
 
     void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -99,12 +99,7 @@ String authToken = request.getHeader("Authorization");
 
     private void successHandler( HttpServletRequest request,
                                  HttpServletResponse response, Authentication authentication ) throws IOException {
-        String token = null;
-		try {
-			token = tokenStore.generateToken( authentication );
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        String token = tokenStore.generateToken( authentication );
         
        
         DefaultOAuth2User principal = (DefaultOAuth2User) authentication.getPrincipal();

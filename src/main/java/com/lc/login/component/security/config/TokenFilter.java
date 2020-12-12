@@ -36,12 +36,7 @@ public class TokenFilter extends OncePerRequestFilter {
 		
 		if(authToken != null) {
 			String token = authToken.split(" ")[1];// poprawić na lepsze rozwiązanie
-			Authentication authentication = null;
-			try {
-				authentication = tokenStore.getAuth(token);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			Authentication authentication = tokenStore.getAuth(token);
 			if(authentication != null) {
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 			}
