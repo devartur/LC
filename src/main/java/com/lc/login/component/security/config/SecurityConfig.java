@@ -6,6 +6,8 @@ import com.lc.login.repository.InMemoryRequestRepository;
 import com.lc.login.repository.TokenStore;
 import com.lc.login.repository.UserRepository;
 
+import io.jsonwebtoken.ExpiredJwtException;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -69,14 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private void logout(HttpServletRequest request, HttpServletResponse response,
                 Authentication authentication) {
-        // You can process token here
-    	
-String authToken = request.getHeader("Authorization");
-		
-		if(authToken != null) {
-			String token = authToken.split(" ")[1];// poprawić na lepsze rozwiązanie
-			tokenStore.removeToken(token);
-		}
+		SecurityContextHolder.clearContext();
     }
 
     void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -99,7 +95,15 @@ String authToken = request.getHeader("Authorization");
 
     private void successHandler( HttpServletRequest request,
                                  HttpServletResponse response, Authentication authentication ) throws IOException {
-        String token = tokenStore.generateToken( authentication );
+    	 String token = null;
+         try {
+             token = tokenStore.generateToken( authentication );
+             response.getWriter().write(
+                     mapper.writeValueAsString( Collections.singletonMap( "accessToken", token ) )
+             );
+         }  catch ( Exception e ) {
+             e.printStackTrace();
+         }
         
        
         DefaultOAuth2User principal = (DefaultOAuth2User) authentication.getPrincipal();
@@ -110,13 +114,9 @@ String authToken = request.getHeader("Authorization");
 			User newUser = new User();
 			newUser.setActive(true);
 			newUser.setOpenId(userOpenId);
-			newUser.setToken(token);
 			userRepository.save(newUser);
 		}
 		
-        response.getWriter().write(
-                mapper.writeValueAsString( Collections.singletonMap( "accessToken", token ) )
-        );
     }
 
     private void authenticationEntryPoint( HttpServletRequest request, HttpServletResponse response,

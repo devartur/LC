@@ -20,10 +20,10 @@ import javax.persistence.Table;
 public class User extends AbstractEntity<Long> {
 	
 	private String openId;
-	private String email;
+	private String email; //not used now 
 	private boolean active;
-	private String token;
-	private Date tokenTime;
+	private String token; //not used now 
+	private Date tokenTime; //not used now
 	
 	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.LAZY)
 	@JoinTable(name = "users_roles", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
