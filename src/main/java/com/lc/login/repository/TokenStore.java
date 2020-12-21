@@ -11,6 +11,7 @@ import java.util.function.Function;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Component;
 
 import com.lc.login.component.CurrentUser.CurrentUser;
@@ -50,9 +51,12 @@ public class TokenStore {
 	}
 
 	public String generateToken(Authentication authentication) throws Exception {
+		
+		DefaultOAuth2User principal = (DefaultOAuth2User) authentication.getPrincipal();
+		String userOpenId = principal.getAttribute("id").toString();
 
 		Map<String, Object> claims = new HashMap<String, Object>();
-		claims.put("id", CurrentUser.getCurrentUserOpenId());
+		claims.put("id", userOpenId);
 		claims.put("role", "ROLE_USER");
 
 		return Jwts.builder().setClaims(claims).setSubject("subject").setIssuedAt(new Date(System.currentTimeMillis()))

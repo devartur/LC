@@ -16,7 +16,6 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "users")
 public class User extends AbstractEntity<Long> {
 	
 	private String openId;
@@ -31,11 +30,19 @@ public class User extends AbstractEntity<Long> {
 	protected List<Role> roles = new ArrayList<Role>();
 	
 	@ManyToMany(cascade = { CascadeType.MERGE })
-	@JoinTable(name = "questions_users", joinColumns = { @JoinColumn(name = "users_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "question_id") })
-	private Set<Question> userQuestions = new HashSet<Question>();
+	@JoinTable(name = "questionsList_users", joinColumns = { @JoinColumn(name = "users_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "questionsList_id") })
+	private Set<QuestionsList> userQuestionsLists = new HashSet<QuestionsList>();
 	
 	
+	public Set<QuestionsList> getUserQuestionsLists() {
+		return userQuestionsLists;
+	}
+
+	public void setUserQuestionsLists(Set<QuestionsList> userQuestionsLists) {
+		this.userQuestionsLists = userQuestionsLists;
+	}
+
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -44,13 +51,6 @@ public class User extends AbstractEntity<Long> {
 		this.roles = roles;
 	}
 
-	public Set<Question> getUserQuestions() {
-		return userQuestions;
-	}
-
-	public void setUserQuestions(Set<Question> userQuestions) {
-		this.userQuestions = userQuestions;
-	}
 
 	public String getEmail() {
 		return email;

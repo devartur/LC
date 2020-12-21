@@ -9,7 +9,6 @@ public class QuestionMapper {
 	public static QuestionDto toDto(Question question) {
 		QuestionDto dto = new QuestionDto();
 		
-		
 		dto.setId(question.getId());
 		dto.setQuestion(question.getQuestion());
 		dto.setBasicAnswer(question.getBasicAnswer());

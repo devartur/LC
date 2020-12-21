@@ -33,9 +33,9 @@ public class Question {
 	private AllQuestions allQuestions;
 	
 	@ManyToMany(cascade = { CascadeType.MERGE })
-	@JoinTable(name = "questions_users", joinColumns = { @JoinColumn(name = "questions_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "users_id") })
-	private List<User> appaQuestionsUsers = new ArrayList<User>();
+	@JoinTable(name = "questionsList_questions", joinColumns = { @JoinColumn(name = "questions_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "questionsList_id") })
+	private List<QuestionsList>  questionsLists = new ArrayList<QuestionsList>();
 
 	public Long getId() {
 		return id;
