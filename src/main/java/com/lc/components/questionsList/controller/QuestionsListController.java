@@ -2,12 +2,18 @@ package com.lc.components.questionsList.controller;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lc.components.questionsList.dto.QuestionsListDto;
+import com.lc.components.questionsList.dto.request.QuestionsListRequestDto;
+import com.lc.components.questionsList.dto.response.QuestionsListResponseDto;
 import com.lc.components.questionsList.service.QuestionsListService;
 
 @RestController
@@ -22,11 +28,24 @@ public class QuestionsListController {
 	}
 	
 	 @GetMapping("questions-lists")
-	List<QuestionsListDto> findQuestionsListByUserId(){
+	public List<QuestionsListResponseDto> findQuestionsListByUserId(){
 		 
-		 List<QuestionsListDto> findUserQuestionsList = questionsListService.findUserQuestionsList();
+		// List<QuestionsListResponseDto> findUserQuestionsList = questionsListService.findUserQuestionsList();
 		 
 		return questionsListService.findUserQuestionsList();
 	}
+	 
+	 @PutMapping("questions-lists")
+	 @ResponseStatus(value = HttpStatus.OK)
+	public void addQuestionsToQuestionsList(@RequestBody QuestionsListRequestDto questionsListDto,
+	        BindingResult bindingResult) {
+		 if (bindingResult.hasErrors()) {
+		    	//rzuć wyjątek
+	        }
+		 
+		  questionsListService.addQuestionsToQuestionsList(questionsListDto);
+		 
+	 } 
 
 }
+

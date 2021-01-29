@@ -20,12 +20,12 @@ public class QuestionsList extends AbstractEntity<Long> {
 	@Column(length = 4000)
 	private String description;
 	
-	@ManyToMany(cascade = { CascadeType.MERGE })
+	@ManyToMany
 	@JoinTable(name = "questionsList_users", joinColumns = { @JoinColumn(name = "questionsList_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "users_id") })
 	private List<User> users = new ArrayList<User>();
 	
-	@ManyToMany(cascade = { CascadeType.MERGE })
+	@ManyToMany
 	@JoinTable(name = "questionsList_questions", joinColumns = { @JoinColumn(name = "questionsList_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "questions_id") })
 	private List<Question> questions = new ArrayList<Question>();

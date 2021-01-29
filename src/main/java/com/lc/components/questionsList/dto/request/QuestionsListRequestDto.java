@@ -1,12 +1,18 @@
-package com.lc.components.questionsList.dto;
+package com.lc.components.questionsList.dto.request;
 
-public class QuestionsListDto {
+import java.util.List;
+
+import com.lc.application.domain.Question;
+
+public class QuestionsListRequestDto {
 	
 	private Long id;
 	
 	private String name;
 
 	private String description;
+	
+	private List<Question> questions;
 
 	public Long getId() {
 		return id;
@@ -30,6 +36,14 @@ public class QuestionsListDto {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
 	}
 	
 }

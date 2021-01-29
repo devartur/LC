@@ -1,22 +1,21 @@
-package com.lc.components.questionsList.dto;
+package com.lc.components.questionsList.dto.response;
 
 import com.lc.application.domain.QuestionsList;
 
-public class QuestionsListMapper {
+public class QuestionsListResponseMapper {
 	
-	private QuestionsListMapper() {};
-	
-	public static QuestionsListDto toDto(QuestionsList questionsList ) {
-		QuestionsListDto dto = new QuestionsListDto();
+	private QuestionsListResponseMapper() {};
+
+	public static QuestionsListResponseDto toDto(QuestionsList questionsList ) {
+		QuestionsListResponseDto dto = new QuestionsListResponseDto();
 		
 		dto.setId(questionsList.getId());
 		dto.setName(questionsList.getName());
 		dto.setDescription(questionsList.getDescription());
-		
 		return dto;
 	}
 	
-	public static QuestionsList toEntity(QuestionsListDto questionsList) {
+	public static QuestionsList toEntity(QuestionsListResponseDto questionsList) {
 		QuestionsList entity = new QuestionsList();
 		
 		entity.setId(questionsList.getId());
@@ -25,6 +24,4 @@ public class QuestionsListMapper {
 		
 		return entity;
 	}
-	
-
 }
