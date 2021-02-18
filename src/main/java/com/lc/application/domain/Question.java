@@ -36,7 +36,21 @@ public class Question {
 	@JoinTable(name = "questionsList_questions", joinColumns = { @JoinColumn(name = "questions_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "questionsList_id") })
 	private List<QuestionsList>  questionsLists = new ArrayList<QuestionsList>();
+	
+	
+	@OneToMany(mappedBy = "question")
+    private List<QuestionAddInfo> questionAddInfos = new ArrayList<>();
+	
 
+	public List<QuestionsList> getQuestionsLists() {
+		return questionsLists;
+	}
+
+	public void setQuestionsLists(List<QuestionsList> questionsLists) {
+		this.questionsLists = questionsLists;
+	}
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -109,6 +123,13 @@ public class Question {
 		this.isShowInAllQuestion = isShowInAllQuestion;
 	}
 
+	public List<QuestionAddInfo> getQuestionAddInfos() {
+		return questionAddInfos;
+	}
+
+	public void setQuestionAddInfos(List<QuestionAddInfo> questionAddInfos) {
+		this.questionAddInfos = questionAddInfos;
+	}
 
 	@Override
 	public int hashCode() {
@@ -121,7 +142,10 @@ public class Question {
 		result = prime * result + ((creationTime == null) ? 0 : creationTime.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((intermediateAnswer == null) ? 0 : intermediateAnswer.hashCode());
+		result = prime * result + (isShowInAllQuestion ? 1231 : 1237);
 		result = prime * result + ((question == null) ? 0 : question.hashCode());
+		result = prime * result + ((questionAddInfos == null) ? 0 : questionAddInfos.hashCode());
+		result = prime * result + ((questionsLists == null) ? 0 : questionsLists.hashCode());
 		return result;
 	}
 
@@ -169,14 +193,25 @@ public class Question {
 				return false;
 		} else if (!intermediateAnswer.equals(other.intermediateAnswer))
 			return false;
+		if (isShowInAllQuestion != other.isShowInAllQuestion)
+			return false;
 		if (question == null) {
 			if (other.question != null)
 				return false;
 		} else if (!question.equals(other.question))
 			return false;
+		if (questionAddInfos == null) {
+			if (other.questionAddInfos != null)
+				return false;
+		} else if (!questionAddInfos.equals(other.questionAddInfos))
+			return false;
+		if (questionsLists == null) {
+			if (other.questionsLists != null)
+				return false;
+		} else if (!questionsLists.equals(other.questionsLists))
+			return false;
 		return true;
 	}
-
 
 	
 }

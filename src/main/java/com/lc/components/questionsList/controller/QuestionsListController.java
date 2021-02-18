@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,7 @@ public class QuestionsListController {
 		return questionsListService.findUserQuestionsList();
 	}
 	 
-	 @PutMapping("questions-lists")
+	 @PutMapping("questions-to-questions-lists")
 	 @ResponseStatus(value = HttpStatus.OK)
 	public void addQuestionsToQuestionsList(@RequestBody QuestionsListRequestDto questionsListDto,
 	        BindingResult bindingResult) {
@@ -44,6 +45,18 @@ public class QuestionsListController {
 	        }
 		 
 		  questionsListService.addQuestionsToQuestionsList(questionsListDto);
+		 
+	 } 
+	 
+	 @PostMapping("questions-lists")
+	 @ResponseStatus(value = HttpStatus.OK)
+	public void addQuestionsList(@RequestBody QuestionsListRequestDto questionsListDto,
+	        BindingResult bindingResult) {
+		 if (bindingResult.hasErrors()) {
+		    	//rzuć wyjątek
+	        }
+		 
+		  questionsListService.addQuestionsList(questionsListDto);
 		 
 	 } 
 

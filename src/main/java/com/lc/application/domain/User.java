@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -33,6 +34,9 @@ public class User extends AbstractEntity<Long> {
 	@JoinTable(name = "questionsList_users", joinColumns = { @JoinColumn(name = "users_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "questionsList_id") })
 	private Set<QuestionsList> userQuestionsLists = new HashSet<QuestionsList>();
+	
+	@OneToMany(mappedBy = "user")
+    private List<QuestionAddInfo> questionAddInfo = new ArrayList<>();
 	
 	
 	public Set<QuestionsList> getUserQuestionsLists() {

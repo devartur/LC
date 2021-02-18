@@ -24,11 +24,12 @@ public class AllQuestions {
     private String secondLevel;
 	@NotNull
     private String thirdLevel;
-    private String fourthLevel; // optional
-    private String fifthLevel; // not use in frontend	
-    private String sixthLevel;// not use in frontend
+    private String fourthLevel;
+    private String fifthLevel; 
+    private String sixthLevel;
+    
     @OneToMany(mappedBy = "allQuestions")
-    private List<Question> questions = new ArrayList<>();  // show numbers of question( where?)
+    private List<Question> questions = new ArrayList<>(); 
     
 	public Long getId() {
 		return id;
