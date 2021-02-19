@@ -22,7 +22,7 @@ public class UserQuestionsService {
 	public List<QuestionWithAddInfoResponseDto> findUserQuestionsWithAddInfoByUserQuestionsList(Long questionsListId) {
 		return userQuestionsRepository
 				//CurrentUser.getCurrentUserOpenId(),
-				.findUserQuestionsByQuestionsList( questionsListId)
+				.findUserQuestionsByQuestionsList(CurrentUser.getCurrentUserOpenId(), questionsListId)
 				.stream().map(QuestionWithAddInfoResponseDtoMapper::toDto).collect(Collectors.toList());
 	}
 

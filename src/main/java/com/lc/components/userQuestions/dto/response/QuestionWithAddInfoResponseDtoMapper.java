@@ -2,6 +2,7 @@ package com.lc.components.userQuestions.dto.response;
 
 import com.lc.application.domain.Question;
 import com.lc.application.domain.QuestionAddInfo;
+import com.lc.login.component.CurrentUser.CurrentUser;
 
 public class QuestionWithAddInfoResponseDtoMapper {
 	
@@ -19,12 +20,16 @@ public class QuestionWithAddInfoResponseDtoMapper {
 		
 		
 		if(!question.getQuestionAddInfos().isEmpty()) {
-		QuestionAddInfo questionAddInfo = question.getQuestionAddInfos().get(0);
-		dto.setUserNote(questionAddInfo.getUserNote());
-		dto.setNextAnswerDateTime(questionAddInfo.getNextAnswerDateTime());
-		dto.setFirstAnswerDateTime(questionAddInfo.getFirstAnswerDateTime());
-		dto.setMarkedAsKnowDateTime(questionAddInfo.getMarkedAsKnowDateTime());
-		dto.setMarkedAsKnow(questionAddInfo.isMarkedAsKnow());
+			for(QuestionAddInfo qai : question.getQuestionAddInfos()) {
+				if(qai.getUser().getOpenId().equals(CurrentUser.getCurrentUserOpenId())) {
+					QuestionAddInfo questionAddInfo = question.getQuestionAddInfos().get(0);
+					dto.setUserNote(questionAddInfo.getUserNote());
+					dto.setNextAnswerDateTime(questionAddInfo.getNextAnswerDateTime());
+					dto.setFirstAnswerDateTime(questionAddInfo.getFirstAnswerDateTime());
+					dto.setMarkedAsKnowDateTime(questionAddInfo.getMarkedAsKnowDateTime());
+					dto.setMarkedAsKnow(questionAddInfo.isMarkedAsKnow());
+				}
+			}
 		}
 		return dto;
 	}
