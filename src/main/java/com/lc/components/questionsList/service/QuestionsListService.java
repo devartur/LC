@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.lc.application.domain.Question;
+import com.lc.application.domain.QuestionAddInfo;
 import com.lc.application.domain.QuestionsList;
 import com.lc.application.domain.User;
 import com.lc.components.allQuestions.repository.QuestionRepository;
@@ -18,6 +19,7 @@ import com.lc.components.questionsList.dto.response.QuestionsListResponseDto;
 import com.lc.components.questionsList.dto.response.QuestionsListResponseMapper;
 import com.lc.components.questionsList.repository.QuestionsListRepository;
 import com.lc.components.questionsList.repository.UserRepository;
+import com.lc.components.userQuestions.repository.QuestionAddInfoRepository;
 import com.lc.login.component.CurrentUser.CurrentUser;
 
 @Service
@@ -25,13 +27,15 @@ public class QuestionsListService {
 
 	QuestionsListRepository questionsListRepository;
 	QuestionRepository questionRepository;
+	QuestionAddInfoRepository questionAddInfoRepository;
 	UserRepository userRepository;
 
 	public QuestionsListService(QuestionsListRepository questionsListRepository,
-			QuestionRepository questionRepository, UserRepository userRepository) {
+			QuestionRepository questionRepository, UserRepository userRepository, QuestionAddInfoRepository questionAddInfoRepository) {
 		this.questionsListRepository = questionsListRepository;
 		this.questionRepository = questionRepository;
 		this.userRepository = userRepository;
+		this.questionAddInfoRepository = questionAddInfoRepository;
 	}
 
 	public List<QuestionsListResponseDto> findUserQuestionsList() {
@@ -56,6 +60,25 @@ public class QuestionsListService {
 	
 		Set<Long> questionsInQuestionsListToUpdateIdSet = new HashSet<Long>();
 		for (Question oneQuestion : questionsInQuestionsListToUpdate) {
+			 List<QuestionAddInfo> questionAddInfos = oneQuestion.getQuestionAddInfos();
+				User user = userRepository.findByOpenId(CurrentUser.getCurrentUserOpenId());
+				
+				if(questionAddInfos.isEmpty()) {
+					addQuestionAddInfo(oneQuestion, user);
+				}else {
+					boolean hasAddInfoForUser = false;
+					for(QuestionAddInfo qai : questionAddInfos) {
+						if(qai.getUser().getId().equals(user.getId())) {
+							hasAddInfoForUser = true;
+						}
+						if(!hasAddInfoForUser) {
+							addQuestionAddInfo(oneQuestion, user);
+						}
+					}
+					
+				}
+				
+			
 			questionsInQuestionsListToUpdateIdSet.add(oneQuestion.getId());
 		}
 
@@ -73,6 +96,14 @@ public class QuestionsListService {
 			}
 
 		}
+	}
+
+	private void addQuestionAddInfo(Question oneQuestion, User user) {
+		QuestionAddInfo qai = new QuestionAddInfo();
+		qai.setQuestion(oneQuestion);
+		qai.setUser(user);
+		qai.setMarkedAsKnow(false);
+		questionAddInfoRepository.save(qai);
 	}
 
 	public void addQuestionsList(QuestionsListRequestDto questionsListDto) {

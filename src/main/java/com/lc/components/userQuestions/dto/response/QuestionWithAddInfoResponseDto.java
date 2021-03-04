@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 public class QuestionWithAddInfoResponseDto {
 	
 	private Long questionId;
-	private Long userId;
 	
 	private String question;
 	private String basicAnswer;
@@ -13,24 +12,24 @@ public class QuestionWithAddInfoResponseDto {
 	private String advancedAnswer;
 	
 	private String userNote;
-	private LocalDateTime nextAnswerDateTime;
-	private LocalDateTime firstAnswerDateTime;
-	private LocalDateTime markedAsKnowDateTime;
-	private boolean isMarkedAsKnow;
 	
 	
-	
+
+	public QuestionWithAddInfoResponseDto(Long questionId, String question, String basicAnswer,
+			String intermediateAnswer, String advancedAnswer, String userNote) {
+		super();
+		this.questionId = questionId;
+		this.question = question;
+		this.basicAnswer = basicAnswer;
+		this.intermediateAnswer = intermediateAnswer;
+		this.advancedAnswer = advancedAnswer;
+		this.userNote = userNote;
+	}
 	public Long getQuestionId() {
 		return questionId;
 	}
 	public void setQuestionId(Long questionId) {
 		this.questionId = questionId;
-	}
-	public Long getUserId() {
-		return userId;
-	}
-	public void setUserId(Long userId) {
-		this.userId = userId;
 	}
 	public String getQuestion() {
 		return question;
@@ -62,30 +61,5 @@ public class QuestionWithAddInfoResponseDto {
 	public void setUserNote(String userNote) {
 		this.userNote = userNote;
 	}
-	public LocalDateTime getNextAnswerDateTime() {
-		return nextAnswerDateTime;
-	}
-	public void setNextAnswerDateTime(LocalDateTime nextAnswerDateTime) {
-		this.nextAnswerDateTime = nextAnswerDateTime;
-	}
-	public LocalDateTime getFirstAnswerDateTime() {
-		return firstAnswerDateTime;
-	}
-	public void setFirstAnswerDateTime(LocalDateTime firstAnswerDateTime) {
-		this.firstAnswerDateTime = firstAnswerDateTime;
-	}
-	public LocalDateTime getMarkedAsKnowDateTime() {
-		return markedAsKnowDateTime;
-	}
-	public void setMarkedAsKnowDateTime(LocalDateTime markedAsKnowDateTime) {
-		this.markedAsKnowDateTime = markedAsKnowDateTime;
-	}
-	public boolean isMarkedAsKnow() {
-		return isMarkedAsKnow;
-	}
-	public void setMarkedAsKnow(boolean isMarkedAsKnow) {
-		this.isMarkedAsKnow = isMarkedAsKnow;
-	}
-	
 
 }
