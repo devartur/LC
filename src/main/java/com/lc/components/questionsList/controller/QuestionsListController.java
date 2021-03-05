@@ -31,8 +31,6 @@ public class QuestionsListController {
 	 @GetMapping("questions-lists")
 	public List<QuestionsListResponseDto> findQuestionsListByUserId(){
 		 
-		// List<QuestionsListResponseDto> findUserQuestionsList = questionsListService.findUserQuestionsList();
-		 
 		return questionsListService.findUserQuestionsList();
 	}
 	 

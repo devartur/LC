@@ -19,23 +19,23 @@ insert into feedback(id, subject, email, feedback) values
   
   -- Example question 
    INSERT INTO QUESTION  (ID, QUESTION, BASIC_ANSWER, INTERMEDIATE_ANSWER, ADVANCED_ANSWER, IS_SHOW_IN_ALL_QUESTION, ALL_QUESTIONS_ID, CREATION_BY, CREATION_TIME ) VALUES 
-(1, ' Co to int? ', ' Liczbowy typ prosty ', ' Zawiera liczby z przedziału ', ' Niezainicjalizowany przez nas automatycznie przyjmuje wartość 0 przez co nie może być null ', 
+(1, '1 Co to int? ', ' Liczbowy typ prosty ', ' Zawiera liczby z przedziału ', ' Niezainicjalizowany przez nas automatycznie przyjmuje wartość 0 przez co nie może być null ', 
 TRUE, 1,  ' Artur ',  CURRENT_TIMESTAMP),
-(2, ' Co to html? ', ' html ', ' 
+(2, '2 Co to html? ', ' html ', ' 
 <h1 style="color: #5e9ca0;">You can edit <span style="color: #2b2301;">this demo</span> text!</h1>
 <ul>
 <li style="color: #2e6c80;"><strong style="color: #000000; font-size: 14px;">coś ta</strong></li>
 <li style="color: #2e6c80;"><strong style="color: #000000; font-size: 14px;">tu cos<br />&nbsp;</strong></li>
 </ul>
 ', ' html 2 ', TRUE, 1,  ' Artur ',  CURRENT_TIMESTAMP),
-(3, ' Co to html? ', ' html ', ' 
+(3, '3 Co to html? ', ' html ', ' 
 <h1 style="color: #5e9ca0;">You can edit <span style="color: #2b2301;">this demo</span> text!</h1>
 <ul>
 <li style="color: #2e6c80;"><strong style="color: #000000; font-size: 14px;">coś ta</strong></li>
 <li style="color: #2e6c80;"><strong style="color: #000000; font-size: 14px;">tu cos<br />&nbsp;</strong></li>
 </ul>
 ', ' html 2 ', TRUE, 1,  ' Artur ',  CURRENT_TIMESTAMP),
-(4, ' Co to html? ', ' html ', ' 
+(4, '4 Co to html? ', ' html ', ' 
 <h1 style="color: red;">You can edit <span style="color: #2b2301;">this demo</span> text!</h1>
 <ul>
 <li style="color: #2e6c80;"><strong style="color: #000000; font-size: 14px;">coś ta</strong></li>
@@ -56,10 +56,7 @@ INSERT INTO QUESTIONS_LIST_USERS (USERS_ID , QUESTIONS_LIST_ID )
 VALUES (1, 1);
 
 
-INSERT INTO QUESTION_ADD_INFO (ID, FIRST_ANSWER_DATE , IS_MARKED_AS_KNOW, MARKED_AS_KNOW_DATE, NEXT_ANSWER_DATE, USER_NOTE, QUESTION_ID, USER_ID   )
-VALUES (1, CURRENT_TIMESTAMP, TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'oczywiste', 1, 1);
-INSERT INTO QUESTION_ADD_INFO (ID, FIRST_ANSWER_DATE , IS_MARKED_AS_KNOW, MARKED_AS_KNOW_DATE, NEXT_ANSWER_DATE, USER_NOTE, QUESTION_ID, USER_ID   )
-VALUES (2, CURRENT_TIMESTAMP, TRUE, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, 'oczywiste', 1, 2);
+
 
 
 

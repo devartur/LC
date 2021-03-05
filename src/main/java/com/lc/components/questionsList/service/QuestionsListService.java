@@ -30,8 +30,8 @@ public class QuestionsListService {
 	QuestionAddInfoRepository questionAddInfoRepository;
 	UserRepository userRepository;
 
-	public QuestionsListService(QuestionsListRepository questionsListRepository,
-			QuestionRepository questionRepository, UserRepository userRepository, QuestionAddInfoRepository questionAddInfoRepository) {
+	public QuestionsListService(QuestionsListRepository questionsListRepository, QuestionRepository questionRepository,
+			UserRepository userRepository, QuestionAddInfoRepository questionAddInfoRepository) {
 		this.questionsListRepository = questionsListRepository;
 		this.questionRepository = questionRepository;
 		this.userRepository = userRepository;
@@ -51,34 +51,32 @@ public class QuestionsListService {
 
 		addUniqueQuestionsToList(questionsInQuestionsListToUpdate, questionsListDto);
 
+		addQuestionAddInfoToQuestions(questionsListToUpdate.getQuestions());
+
 		QuestionsList savedQuestionsList = questionsListRepository.save(questionsListToUpdate);
 		return savedQuestionsList;
 
 	}
 
-	private void addUniqueQuestionsToList(List<Question> questionsInQuestionsListToUpdate, QuestionsListRequestDto questionsListDto) {
-	
+	private void addQuestionAddInfoToQuestions(List<Question> questions) {
+		User user = userRepository.findByOpenId(CurrentUser.getCurrentUserOpenId());
+
+		for (Question oneQuestion : questions) {
+			List<QuestionAddInfo> questionAddInfos = oneQuestion.getQuestionAddInfos();
+			boolean hasAddInfoForUser = questionAddInfos.stream()
+					.anyMatch(qai -> qai.getUser().getId().equals(user.getId()));
+
+			if (!hasAddInfoForUser) {
+				addQuestionAddInfo(oneQuestion, user);
+			}
+		}
+	}
+
+	private void addUniqueQuestionsToList(List<Question> questionsInQuestionsListToUpdate,
+			QuestionsListRequestDto questionsListDto) {
+
 		Set<Long> questionsInQuestionsListToUpdateIdSet = new HashSet<Long>();
 		for (Question oneQuestion : questionsInQuestionsListToUpdate) {
-			 List<QuestionAddInfo> questionAddInfos = oneQuestion.getQuestionAddInfos();
-				User user = userRepository.findByOpenId(CurrentUser.getCurrentUserOpenId());
-				
-				if(questionAddInfos.isEmpty()) {
-					addQuestionAddInfo(oneQuestion, user);
-				}else {
-					boolean hasAddInfoForUser = false;
-					for(QuestionAddInfo qai : questionAddInfos) {
-						if(qai.getUser().getId().equals(user.getId())) {
-							hasAddInfoForUser = true;
-						}
-						if(!hasAddInfoForUser) {
-							addQuestionAddInfo(oneQuestion, user);
-						}
-					}
-					
-				}
-				
-			
 			questionsInQuestionsListToUpdateIdSet.add(oneQuestion.getId());
 		}
 
@@ -88,7 +86,6 @@ public class QuestionsListService {
 			questionsToAddIdSet.add(oneQuestion.getId());
 		}
 
-		
 		for (Long newQuestionId : questionsToAddIdSet) {
 			if (!questionsInQuestionsListToUpdateIdSet.contains(newQuestionId)) {
 				Question tempQuestion = questionRepository.findById(newQuestionId).orElse(null);
@@ -111,7 +108,7 @@ public class QuestionsListService {
 		User user = userRepository.findByOpenId(CurrentUser.getCurrentUserOpenId());
 		addQuestionsList.setUsers(Arrays.asList(user));
 		questionsListRepository.save(addQuestionsList);
-		
+
 	}
 
 }
