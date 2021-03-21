@@ -6,20 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lc.components.allQuestions.dto.QuestionDto;
 import com.lc.components.userQuestions.dto.response.QuestionWithAddInfoResponseDto;
 import com.lc.components.userQuestions.service.UserQuestionsService;
 
@@ -38,7 +34,6 @@ public class UserQuestionsController {
 	
 	 @GetMapping("user-questions-in-questions-lists")
 	public List<QuestionWithAddInfoResponseDto> findUserQuestionsWithAddInfoByUserQuestionsList(@RequestParam("questionsListId") Long questionsListId){
-		 List<QuestionWithAddInfoResponseDto> gg = userQuestionsService.findUserQuestionsWithAddInfoByUserQuestionsList(questionsListId);
 		return userQuestionsService.findUserQuestionsWithAddInfoByUserQuestionsList(questionsListId);
 	}
 	 
@@ -48,9 +43,6 @@ public class UserQuestionsController {
 	    
 		 userQuestionsService.partialUpdateQuestionWithAddInfo(updates, questionId);
 	 }
-
-	 
-	
 
 }
 
